@@ -1,0 +1,154 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.invisible{
+    display: none;
+}
+
+.navbar{
+    height: 3rem;
+    background: black;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.nav_link{
+    padding: 0.5rem;
+    font-size: 1rem;
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    height: 2.7rem;
+    border: 2px solid white;
+    transition: all 0.5s linear;
+    display: grid;
+    align-content: center;
+}
+
+.nav_link:hover{
+    color:black;
+    background: white;
+}
+
+.project_title{
+    text-align: center;
+    font-size: 3rem;
+    text-transform: uppercase;
+    padding: 0.5rem;
+}
+
+
+.project_description{
+    padding: 0.25rem 1rem;
+}
+
+.assignment{
+    margin-top: 1rem;
+    padding-left: 2rem;
+}
+
+.input_field{
+    width: 90%;
+    border: 1px solid black;
+    border-radius: 0.25rem;
+    margin: 1rem;
+}
+
+.field{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.code_space{
+    margin: 1.5rem;
+    padding: 0.5rem;
+    border: 1px solid black;
+    border-radius: 0.5rem;
+    background: lightgray;
+    line-height: 1.25rem;
+}
+
+.code_title{
+    text-decoration: underline;
+    margin-bottom: 0.5rem;
+}
+
+.code_text{
+    text-align: center;
+    max-width: 50vw;
+    overflow-wrap: anywhere;
+}
+
+.input_row{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.cash_input{
+    position: relative;
+    margin-right: 5rem;
+    width: 10rem;
+}
+
+.cid_input{
+    position: relative;
+    margin-left: 5rem;
+    width: 10rem;
+}
+
+.add_cash{
+    position: absolute;
+    left: 2.5rem;
+}
+
+.remove_cash{
+    position: absolute;
+    left: 3.5rem;
+}
+
+.cash_value{
+    position: absolute;
+    left: 6.60rem;
+}
+
+.cash_count{
+    position: absolute;
+    left: 4.60rem;
+}
+
+.cash_sum{
+    font-size: 1.15rem;
+    text-decoration: underline;
+}
+
+#cash_out{
+    margin: 1rem;
+}
+
+
+@media screen and (min-width: 700px){
+    .nav_link{
+        width: 20%;
+    }
+}
+
+@media screen and (max-width: 530px){
+    .nav_link{
+        height: 3.7rem;
+        font-size: 0.8rem;
+    }
+    .navbar{
+        height: 4rem;
+    }
+
+    .project_title{
+        font-size: 1.6rem;
+    }
+}
+

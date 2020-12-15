@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>freeCodeCamp.org - JavaScript Algorithms and Data Structures project</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <script src="https://kit.fontawesome.com/e0d62bc312.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <a data-id="palindrome_checker" class="nav_link">Palindrome Checker</a>
+            <a data-id="roman_numeral_converter" class="nav_link">Roman Numeral Converter</a>
+            <a data-id="caesars_cipher" class="nav_link">Caesars Cipher</a>
+            <a data-id="telephone_number_validator" class="nav_link">Telephone Number Validator</a>
+            <a data-id="cash_register" class="nav_link">Cash Register</a>
+        </nav>
+    </header>
+    <section class="section-setup invisible" id="palindrome_checker">
+        <h1 class="project_title">Palindrome Checker</h1>
+        <h4 class="assignment">Assignment:</h4>
+        <p class="project_description">
+            Return true if the given string is a palindrome. Otherwise, return false.
+
+            A palindrome is a word or sentence that's spelled the same way both forward and backward, ignoring
+            punctuation, case, and spacing.</p>
+        <h4 class="assignment">Solution:</h4>
+        <div class="field">
+            <h5> Input: </h5>
+            <input type="text" class="input_field" id="palindrome_in">
+        </div>
+        <div class="field">
+        <h5> Output: </h5>
+            <input type="text" class="input_field" id="palindrome_out">
+        </div>
+        <div class="code_space">
+            <h4 class="code_title">Code:</h4>
+            <code class="code_text">
+                const&nbsp;palindrome&nbsp;=&nbsp;(str)&nbsp;=>&nbsp;{<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;str&nbsp;=&nbsp;str.replace(/[^0-9a-z]/gi,&nbsp;'').toLowerCase();<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;let&nbsp;reversedStr&nbsp;=&nbsp;str.split('').reverse().join('');<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;(reversedStr&nbsp;===&nbsp;str);<br>
+            </code>
+        </div>
+    </section>
+    
+    <section class="section-setup invisible" id="roman_numeral_converter">
+        <h1 class="project_title">Roman Numeral Converter</h1>
+        <h4 class="assignment">Assignment:</h4>
+        <p class="project_description">
+            Convert the given number into a roman numeral.</p>
+        <h4 class="assignment">Solution:</h4>
+        <div class="field">
+            <h5> Input: </h5>
+            <input type="text" class="input_field" id="roman_in">
+        </div>
+        <div class="field">
+        <h5> Output: </h5>
+            <input type="text" class="input_field" id="roman_out">
+        </div>
+        <div class="code_space">
+            <h4 class="code_title">Code:</h4>
+            <code class="code_text">
+                const&nbsp;convertToRoman&nbsp;=&nbsp;(num,&nbsp;i=0,&nbsp;output='')&nbsp;=>&nbsp;{<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;let&nbsp;romVals&nbsp;=&nbsp;[1000,900,500,400,100,90,50,40,10,9,5,4,1];<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;let&nbsp;romChars&nbsp;=&nbsp;['M','CM','D','CD','C','XC','L','XL','X','IX','V','IV','I'];<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;if(!num){<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;output<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;else&nbsp;if(romVals[i]&nbsp;>&nbsp;num){<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;convertToRoman(num,&nbsp;i+=&nbsp;1,&nbsp;output)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;else{<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;convertToRoman(num&nbsp;-&nbsp;romVals[i],&nbsp;i,&nbsp;output&nbsp;+=&nbsp;romChars[i]);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                    };
+            </code>
+        </div>
+        
+    </section>
+    <section class="section-setup invisible" id="caesars_cipher">
+        <h1 class="project_title">Caesars Cipher</h1>
+        <h4 class="assignment">Assignment:</h4>
+        <p class="project_description">
+            One of the simplest and most widely known ciphers is a Caesar cipher, also known as a shift cipher.
+            In a shift cipher the meanings of the letters are shifted by some set amount.
+            <br>
+            A common modern use is the ROT13 cipher, where the values of the letters are shifted by 
+            13 places. Thus 'A' ↔ 'N', 'B' ↔ 'O' and so on.
+            <br>
+            Write a function which takes a ROT13 encoded string as input and returns a decoded string.
+        </p>
+        <h4 class="assignment">Solution:</h4>
+        <div class="field">
+            <h5> Input: </h5>
+            <input type="text" class="input_field" id="caesar_in">
+        </div>
+        <div class="field">
+        <h5> Output: </h5>
+            <input type="text" class="input_field" id="caesar_out">
+        </div>
+        <div class="code_space">
+            <h4 class="code_title">Code:</h4>
+            <code class="code_text">
+                const&nbsp;rot13&nbsp;=&nbsp;()&nbsp;=>&nbsp;{<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;str&nbsp;=&nbsp;str.toUpperCase()<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;let&nbsp;decoded&nbsp;=&nbsp;'abcdefghijklmnopqrstuvwxyz'<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;let&nbsp;coded&nbsp;=&nbsp;'NOPQRSTUVWXYZABCDEFGHIJKLM'<br>
+                    <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;for(let&nbsp;i&nbsp;=&nbsp;0;&nbsp;i&nbsp;<&nbsp;coded.length;&nbsp;i++){<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;re&nbsp;=&nbsp;new&nbsp;RegExp(coded[i],'g');<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;str&nbsp;=&nbsp;str.replace(re,decoded[i]);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;str.toUpperCase();<br>
+                    }
+            </code>
+        </div>
+    </section>
+    <section class="section-setup invisible" id="telephone_number_validator">
+        <h1 class="project_title">Telephone Number Validator</h1>
+        <h4 class="assignment">Assignment:</h4>
+        <p class="project_description">
+            Return true if the passed string looks like a valid US phone number. <br>
+            The user may fill out the form field any way they choose as long as it has 
+            the format of a valid US number. <br>
+            Your job is to validate or reject the US phone number based on any combination
+            of the formats provided above. The area code is required. If the country code 
+            is provided, you must confirm that the country code is 1. Return true if the 
+            string is a valid US phone number; otherwise return false.
+        </p>
+        <h4 class="assignment">Solution:</h4>
+        <div class="field">
+            <h5> Input: </h5>
+            <input type="text" class="input_field" id="telephone_in">
+        </div>
+        <div class="field">
+        <h5> Output: </h5>
+            <input type="text" class="input_field" id="telephone_out">
+        </div>
+        <div class="code_space">
+            <h4 class="code_title">Code:</h4>
+            <code class="code_text">
+                const&nbsp;telephoneCheck&nbsp;=&nbsp;(str)&nbsp;=>&nbsp;{<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;if(str.match(/\d/g).length<10){return&nbsp;false;}<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;let&nbsp;number&nbsp;=&nbsp;str.match(<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    /^1[\s-]?[(][\s-]?\d{3}[\s-]?[)][\s-]?\d{3}[\s-]\d{4}|^1[\s-]\d{3}[\s-]\d{3}[\s-]\d{4}|^
+                    [(]\d{3}[)][\s-]?\d{3}[\s-]\d{4}|^\d{3}[\s-]?\d{3}[\s-]\d{4}|^\d{10}$/i)&nbsp;||&nbsp;"";<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(number.length&nbsp;<&nbsp;1){<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;false;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(number[0].length&nbsp;>=&nbsp;10){<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;true;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;false;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;};<br>
+            </code>
+        </div>
+    </section>
+    <section class="section-setupe" id="cash_register">
+        <h1 class="project_title">Cash Register</h1>
+        <h4 class="assignment">Assignment:</h4>
+        <p class="project_description">
+            Design a cash register drawer function checkCashRegister() that accepts purchase price as the first argument (price), payment as the second argument (cash), and cash-in-drawer (cid) as the third argument.<br>
+            <br>
+            cid is a 2D array listing available currency.<br>
+            The checkCashRegister() function should always return an object with a status key and a change key.<br><br>
+            Return {status: "INSUFFICIENT_FUNDS", change: []} if cash-in-drawer is less than the change due, or if you cannot return the exact change.<br><br>
+            Return {status: "CLOSED", change: [...]} with cash-in-drawer as the value for the key change if it is equal to the change due.<br><br>
+            Otherwise, return {status: "OPEN", change: [...]}, with the change due in coins and bills, sorted in highest to lowest order, as the value of the change key.
+        </p>
+        <h4 class="assignment">Solution:</h4>
+        <div class="field">
+            <h5> Input: </h5>
+            <div class="input_row">
+                <div class="cash_input" id='cash'>
+                    <label for="price">Price: <input name="price" type="text" class="price_input_form"></label>
+                    <label for="cash">Cash paid: <input name="cash" type="text" class="cash_input_form"></label>
+                </div>
+                <div class="cid_input" id='cid'>
+                    <h4 class="cash_input_title">Cash in drawer:</h4> 
+                    <span class="cash_select" data-id="100">
+                        100$
+                        <a href=# class="add_cash"><i class="far fa-plus-square"></i></a>
+                        <a href=# class="remove_cash"><i class="far fa-minus-square"></i></a>
+                        <span class="cash_count">0x</span>
+                        <span class="cash_value">0$</span>
+                    </span><br>
+                    <span class="cash_select" data-id="20">
+                        20$
+                        <a href=# class="add_cash"><i class="far fa-plus-square"></i></a>
+                        <a href=# class="remove_cash"><i class="far fa-minus-square"></i></a>
+                        <span class="cash_count">0x</span>
+                        <span class="cash_value">0$</span>
+                    </span><br>
+                    <span class="cash_select" data-id="10">
+                        10$
+                        <a href=# class="add_cash"><i class="far fa-plus-square"></i></a>
+                        <a href=# class="remove_cash"><i class="far fa-minus-square"></i></a>
+                        <span class="cash_count">0x</span>
+                        <span class="cash_value">0$</span>
+                    </span><br>
+                    <span class="cash_select" data-id="5">
+                        5$
+                        <a href=# class="add_cash"><i class="far fa-plus-square"></i></a>
+                        <a href=# class="remove_cash"><i class="far fa-minus-square"></i></a>
+                        <span class="cash_count">0x</span>
+                        <span class="cash_value">0$</span>
+                    </span><br>
+                    <span class="cash_select" data-id="1">
+                        1$
+                        <a href=# class="add_cash"><i class="far fa-plus-square"></i></a>
+                        <a href=# class="remove_cash"><i class="far fa-minus-square"></i></a>
+                        <span class="cash_count">0x</span>
+                        <span class="cash_value">0$</span>
+                    </span><br>
+                    <span class="cash_select" data-id="0.25">
+                        0.25$
+                        <a href=# class="add_cash"><i class="far fa-plus-square"></i></a>
+                        <a href=# class="remove_cash"><i class="far fa-minus-square"></i></a>
+                        <span class="cash_count">0x</span>
+                        <span class="cash_value">0$</span>
+                    </span><br>
+                    <span class="cash_select" data-id="0.10">
+                        0.10$
+                        <a href=# class="add_cash"><i class="far fa-plus-square"></i></a>
+                        <a href=# class="remove_cash"><i class="far fa-minus-square"></i></a>
+                        <span class="cash_count">0x</span>
+                        <span class="cash_value">0$</span>
+                    </span><br>
+                    <span class="cash_select" data-id="0.05">
+                        0.05$
+                        <a href=# class="add_cash"><i class="far fa-plus-square"></i></a>
+                        <a href=# class="remove_cash"><i class="far fa-minus-square"></i></a>
+                        <span class="cash_count">0x</span>
+                        <span class="cash_value">0$</span>
+                    </span><br>
+                    <span class="cash_select" data-id="0.01">
+                        0.01$
+                        <a href=# class="add_cash"><i class="far fa-plus-square"></i></a>
+                        <a href=# class="remove_cash"><i class="far fa-minus-square"></i></a>
+                        <span class="cash_count">0x</span>
+                        <span class="cash_value">0$</span>
+                    </span><br>
+                    Sum: <span class="cash_sum"></span>
+                </div>
+            </div>
+        </div>
+        <div class="field">
+        <h5> Output: </h5>
+        <div class="input_field">
+            <div id="cash_out"></div>
+        </div>
+        </div>
+        <div class="code_space">
+            <h4 class="code_title">Code:</h4>
+            <code class="code_text">
+                const&nbsp;checkCashRegister&nbsp;=&nbsp;(price,&nbsp;cash,&nbsp;cid)&nbsp;=>&nbsp;{<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;cName&nbsp;=&nbsp;["ONE&nbsp;HUNDRED","TWENTY","TEN","FIVE","ONE","QUARTER","DIME","NICKEL","PENNY"];<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;cValue&nbsp;=&nbsp;[100,20,10,5,1,0.25,0.1,0.05,0.01];<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;changeArr&nbsp;=&nbsp;[];<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;bank&nbsp;=&nbsp;{};<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;dispo&nbsp;=&nbsp;0;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;for(let&nbsp;i&nbsp;=&nbsp;0;&nbsp;i&nbsp;<&nbsp;cid.length;&nbsp;i++){<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bank[cid[i][0]]&nbsp;=&nbsp;cid[i][1];<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dispo&nbsp;+=&nbsp;cid[i][1];<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;};<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;let&nbsp;cashback&nbsp;=&nbsp;cash&nbsp;-&nbsp;price;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;if(dispo&nbsp;==&nbsp;cashback){<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;{<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;status:&nbsp;"CLOSED",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;change:&nbsp;cid<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;}else&nbsp;if(dispo&nbsp;<&nbsp;cashback){<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;{<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;status:&nbsp;"INSUFFICIENT_FUNDS",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;change:&nbsp;[]<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;};<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;let&nbsp;cb&nbsp;=&nbsp;[]<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;for(let&nbsp;i&nbsp;=&nbsp;0;&nbsp;i&nbsp;<&nbsp;cName.length;&nbsp;i++){<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;currentcount&nbsp;=&nbsp;0;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;while(cValue[i]&nbsp;<=&nbsp;cashback&nbsp;&&<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cValue[i]&nbsp;<=&nbsp;bank[cName[i]]){<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cashback&nbsp;=&nbsp;(cashback&nbsp;-&nbsp;cValue[i]).toFixed(2);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bank[cName[i]]&nbsp;-=&nbsp;cValue[i];<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;currentcount&nbsp;+=&nbsp;cValue[i];<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(currentcount&nbsp;>&nbsp;0){<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;changeArr.push([cName[i],currentcount])<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;};<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;if(cashback&nbsp;==&nbsp;0){<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;{<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;status:&nbsp;"OPEN",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;change:&nbsp;changeArr<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;}else&nbsp;{<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;{<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;status:&nbsp;"INSUFFICIENT_FUNDS",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;change:&nbsp;[]<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;};<br>
+                    };<br>
+            </code>
+        </div>
+    </section>
+    <script src="script/app.js"></script>
+</body>
+
+</html>
