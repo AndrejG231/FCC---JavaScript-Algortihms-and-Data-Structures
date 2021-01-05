@@ -1,18 +1,6 @@
-const exx = {
-    nav: document.querySelectorAll('.nav_link'),
-    palindromeIn: document.getElementById('palindrome_in'),
-    palindromeOut: document.getElementById('palindrome_out'),
-    romanIn: document.getElementById('roman_in'),
-    romanOut: document.getElementById('roman_out'),
-    caesarIn: document.getElementById('caesar_in'),
-    caesarOut: document.getElementById('caesar_out'),
-    telephoneIn: document.getElementById('telephone_in'),
-    telephoneOut: document.getElementById('telephone_out'),
-    cashAdd: document.querySelectorAll('.add_cash'),
-    cashRem: document.querySelectorAll('.remove_cash'),
-    priceInput: document.querySelector('.price_input_form'),
-    cashInput: document.querySelector('.cash_input_form'),
-}
+// ------------------- //
+// SOLUTION ALGORITHMS //
+// ------------------- //
 
 const palindrome = (str) => {
     str = str.replace(/[^0-9a-z]/gi, '').toLowerCase();
@@ -120,6 +108,26 @@ const cash = (price, cash, cid) => {
     };
 };
 
+// ------------- //
+// REST OF SETUP //
+// ------------- //
+
+const elements = {
+    nav: document.querySelectorAll('.nav_link'),
+    palindromeIn: document.getElementById('palindrome_in'),
+    palindromeOut: document.getElementById('palindrome_out'),
+    romanIn: document.getElementById('roman_in'),
+    romanOut: document.getElementById('roman_out'),
+    caesarIn: document.getElementById('caesar_in'),
+    caesarOut: document.getElementById('caesar_out'),
+    telephoneIn: document.getElementById('telephone_in'),
+    telephoneOut: document.getElementById('telephone_out'),
+    cashAdd: document.querySelectorAll('.add_cash'),
+    cashRem: document.querySelectorAll('.remove_cash'),
+    priceInput: document.querySelector('.price_input_form'),
+    cashInput: document.querySelector('.cash_input_form'),
+}
+
 let cashObject = {
     cidSum: 0,
     cidInput: [],
@@ -139,8 +147,7 @@ let cashObject = {
 
 class Change {
     currentWindow(event) {
-        //event.target.dataset.id
-        exx.nav.forEach(item => {
+        elements.nav.forEach(item => {
             if (item.dataset.id === event.target.dataset.id) {
                 document.getElementById(item.dataset.id).classList.remove('invisible');
             } else {
@@ -149,16 +156,16 @@ class Change {
         })
     }
     palindrome() {
-        exx.palindromeOut.value = palindrome(exx.palindromeIn.value);
+        elements.palindromeOut.value = palindrome(elements.palindromeIn.value);
     }
     roman() {
-        exx.romanOut.value = roman(exx.romanIn.value);
+        elements.romanOut.value = roman(elements.romanIn.value);
     }
     caesar() {
-        exx.caesarOut.value = caesar(exx.caesarIn.value);
+        elements.caesarOut.value = caesar(elements.caesarIn.value);
     }
     telephone() {
-        exx.telephoneOut.value = telephone(exx.telephoneIn.value);
+        elements.telephoneOut.value = telephone(elements.telephoneIn.value);
     }
     fixCash(objKey){
         cashObject[objKey + 'Sum'] = Object.keys(cashObject[objKey]).reduce((sum, key) =>
@@ -177,7 +184,7 @@ class Change {
         })
     };
     produceOutput(){
-        let output = cash(exx.priceInput.value, exx.cashInput.value, cashObject['cidInput']);
+        let output = cash(elements.priceInput.value, elements.cashInput.value, cashObject['cidInput']);
         let change = output['change'].map(item => `<br>${item[0]} : ${item[1]}`)
         document.querySelector('#cash_out').innerHTML =
             `<p>Status: ${output['status']}<br>
@@ -220,22 +227,28 @@ class Change {
 
 const eventListeners = () => {
     change = new Change;
-    //Nav cards swap
-    exx.nav.forEach(item => item.addEventListener('click', (event) => {
+
+        //Navigation cards swap
+    elements.nav.forEach(item => item.addEventListener('click', (event) => {
         event.preventDefault();
         change.currentWindow(event);
     }));
-    //Palindrome 
-    exx.palindromeIn.addEventListener('keyup', () => change.palindrome());
-    //Roman Numeral Converter
-    exx.romanIn.addEventListener('keyup', () => change.roman())
-    //Caesars Cipher
-    exx.caesarIn.addEventListener('keyup', () => change.caesar())
-    //telepohne validator
-    exx.telephoneIn.addEventListener('keyup', () => change.telephone())
 
-    //cash register
-    exx.cashAdd.forEach(
+        //Palindrome Checker
+    elements.palindromeIn.addEventListener('keyup', () => change.palindrome());
+
+        //Roman Numeral Converter
+    elements.romanIn.addEventListener('keyup', () => change.roman())
+
+        //Caesars Cipher
+    elements.caesarIn.addEventListener('keyup', () => change.caesar())
+
+        //Telepohne Number Validator
+    elements.telephoneIn.addEventListener('keyup', () => change.telephone())
+
+        //Cash Register
+            //Handle plus buttons
+    elements.cashAdd.forEach(
         item => {item.addEventListener('click', (event) => {
             event.preventDefault();
             console.log(event)
@@ -244,16 +257,16 @@ const eventListeners = () => {
         change.setup(item);
         }
     );
-
-    exx.cashRem.forEach(
+            //Handle minus buttons
+    elements.cashRem.forEach(
         item => item.addEventListener('click', (event) => {
             event.preventDefault();
             change.cash(event, -1);
         })
     );
-
-    exx.priceInput.addEventListener('keyup', () => change.produceOutput());
-    exx.cashInput.addEventListener('keyup', () => change.produceOutput());
+            //Handle inputs
+    elements.priceInput.addEventListener('keyup', () => change.produceOutput());
+    elements.cashInput.addEventListener('keyup', () => change.produceOutput());
 }
 
 
